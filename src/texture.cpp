@@ -10,8 +10,8 @@ Texture::Texture()
     : mTexture{nullptr},
       mWidth{0}, mHeight{0}
 {
-    if (mainwindow == nullptr)
-        throw SDLException("Could not locate MainWindow");
+    // if (mainwindow == nullptr)
+    //     throw SDLException("Could not locate MainWindow");
 }
 
 Texture::~Texture()
@@ -29,16 +29,16 @@ bool Texture::loadFromFile( const std::string& path )
 
     //Load image at specified path
     SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-    if( loadedSurface == nullptr )
-        throw SDLException(std::string("Unable to load image ") + path + " : " + IMG_GetError());
+    // if( loadedSurface == nullptr )
+    //     throw SDLException(std::string("Unable to load image ") + path + " : " + IMG_GetError());
 
     //Color key image
     SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0xFF, 0xFF, 0xFF ) );
 
     //Create texture from surface pixels
     newTexture = SDL_CreateTextureFromSurface( mainwindow->getRenderer(), loadedSurface );
-    if( newTexture == nullptr )
-        throw SDLException(std::string("Unable to create texture from ") + path + " : " + SDL_GetError());
+    // if( newTexture == nullptr )
+    //     throw SDLException(std::string("Unable to create texture from ") + path + " : " + SDL_GetError());
 
     //Get image dimensions
     mWidth = loadedSurface->w;
@@ -59,13 +59,13 @@ bool Texture::loadFromRenderedText( const std::string& textureText, Font& f, SDL
 
     //Render text surface
     SDL_Surface* textSurface = TTF_RenderText_Solid( f.getFont(), textureText.c_str(), textColor );
-    if( textSurface == nullptr )
-        throw SDLException(std::string("Unable to render text surface! SDL_ttf Error: ") + TTF_GetError());
+    // if( textSurface == nullptr )
+    //     throw SDLException(std::string("Unable to render text surface! SDL_ttf Error: ") + TTF_GetError());
 
     //Create texture from surface pixels
     mTexture = SDL_CreateTextureFromSurface( mainwindow->getRenderer(), textSurface );
-    if( mTexture == nullptr )
-        throw SDLException(std::string("Unable to create texture from text :") + SDL_GetError());
+    // if( mTexture == nullptr )
+    //     throw SDLException(std::string("Unable to create texture from text :") + SDL_GetError());
 
     //Get image dimensions
     mWidth = textSurface->w;

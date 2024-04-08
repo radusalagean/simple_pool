@@ -8,31 +8,32 @@ find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include"
-                     ${SDL2_INCLUDE_DIR}
+include_directories(${SDL2_INCLUDE_DIR}
                      ${SDL2_IMAGE_INCLUDE_DIR}
                      ${SDL2_TTF_INCLUDE_DIR}
                      ${SDL2_MIXER_INCLUDE_DIRS}
 )
 
+set(CMAKE_INSTALL_BINDIR "${CMAKE_SOURCE_DIR}/../../bin/linux")
+
 set(SOURCES
-    src/main.cpp
-    src/exception.cpp
-    src/mainwindow.cpp
-    src/texture.cpp
-    src/font.cpp
-    src/music.cpp
-    src/gamestate.cpp
-    src/intro.cpp
-    src/level.cpp
-    src/table.cpp
-    src/subject.cpp
-    src/observer.cpp
-    src/rect.cpp
-    src/ball.cpp
-    src/collisionobserver.cpp
-    src/audioobserver.cpp
-    src/cue.cpp
+    "${CMAKE_SOURCE_DIR}/../../platform/Linux/main.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/exception.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/mainwindow.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/texture.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/font.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/music.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/gamestate.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/intro.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/level.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/table.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/subject.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/observer.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/rect.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/ball.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/collisionobserver.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/audioobserver.cpp"
+    "${CMAKE_SOURCE_DIR}/../../src/cue.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -54,13 +55,13 @@ target_link_libraries(${PROJECT_NAME}
                       ${SDL2_MIXER_LIBRARIES}
 )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_BINDIR})
 
 include(GNUInstallDirs)
-install(TARGETS ${PROJECT_NAME}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+# install(TARGETS ${PROJECT_NAME}
+#     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+# )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/pool_assets/
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/../../pool_assets/
     DESTINATION ${CMAKE_INSTALL_BINDIR}/pool_assets/
 )

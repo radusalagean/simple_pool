@@ -12,8 +12,8 @@ Rect::Rect(int x, int y, int w, int h)
     : border{SDL_Color{0,0,0,0xFF}},
       inside{SDL_Color{0xFF,0XFF,0XFF,0xFF}}, solid{false}, rect{}
 {
-    if (mainwindow == nullptr)
-        throw SDLException("Could not locate MainWindow");
+    // if (mainwindow == nullptr)
+    //     throw SDLException("Could not locate MainWindow");
 
     rect.x = x;
     rect.y = y;

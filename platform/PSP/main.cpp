@@ -1,15 +1,16 @@
-#include "mainwindow.h"
-#include "gamestate.h"
-#include "intro.h"
+#include "../../src/mainwindow.h"
+#include "../../src/gamestate.h"
+#include "../../src/intro.h"
 
 #include <SDL.h>
 #include <memory>
 
-int main()
+int main(int argc, char *argv[])
 {
     // MainWindow must be the first object instanciated
-    MainWindow win (800, 600, "Simple Pool");
-    win.setIcon("./pool_assets/ball8.png");
+    MainWindow win (480, 272, "Simple Pool");
+    // MainWindow win (800, 600, "Simple Pool");
+    // win.setIcon("./pool_assets/ball8.png");
 
     std::unique_ptr<GameState> currentState {std::make_unique<Intro>()};
 

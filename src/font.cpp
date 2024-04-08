@@ -21,8 +21,8 @@ void Font::loadFromFile(const std::string& path, int size)
     free();
 
     gFont = TTF_OpenFont( path.c_str(), size );
-    if (gFont == nullptr)
-        throw SDLException(std::string("Failed to load font! SDL_ttf Error: ") + TTF_GetError());
+    // if (gFont == nullptr)
+    //     throw SDLException(std::string("Failed to load font! SDL_ttf Error: ") + TTF_GetError());
 }
 
 void Font::free() noexcept

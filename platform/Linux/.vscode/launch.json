@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Linux Launch",
+            "type": "node",
+            "runtimeExecutable": "${workspaceFolder}/../../bin/linux/simple_pool",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/../../bin/linux",
+            "preLaunchTask": "build"
+        }
+    ]
+}

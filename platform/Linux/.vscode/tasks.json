@@ -1,0 +1,121 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // Prepare Environment
+        {
+            "label": "prepare-env",
+            "type": "shell",
+            "command": "mkdir -p bin/linux",
+            "options": {
+                "cwd": "${workspaceFolder}/../.."
+            },
+            "problemMatcher": []
+        },
+
+        // Copy assets
+        {
+            "label": "copy-assets",
+            "type": "shell",
+            "command": "mkdir -p bin/linux/pool_assets && cp -rv pool_assets/* bin/linux/pool_assets",
+            "options": {
+                "cwd": "${workspaceFolder}/../.."
+            },
+            "problemMatcher": []
+        },
+
+        // Build tasks
+        {
+            "label": "cmake",
+            "type": "shell",
+            "command": "cmake -DCMAKE_BUILD_TYPE=Debug -B bin/linux ${workspaceFolder}",
+            "options": {
+                "cwd": "${workspaceFolder}/../.."
+            },
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make install",
+            "options": {
+                "cwd": "${workspaceFolder}/../../bin/linux"
+            },
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "build",
+            "dependsOn": [
+                "cmake",
+                "make"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+
+        // Clean tasks
+        {
+            "label": "clean-cmake-output",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rfv",
+                "*CMakeFiles/",
+                "cmake_install.cmake",
+                "*CMakeCache.txt",
+                "Makefile"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../../bin/linux"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "clean-make-output",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rfv",
+                "*.o",
+                "simple_pool"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../../bin/linux"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "dependsOn": [
+                "clean-cmake-output",
+                "clean-make-output"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+
+        // Rebuild
+        {
+            "label": "rebuild",
+            "dependsOn": [
+                "clean",
+                "build"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+        
+        // Debug
+        {
+            "label": "print-env-variables",
+            "type": "shell",
+            "command": "env",
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.tcc": "cpp",
+			"format": "cpp",
+			"cstring": "cpp",
+			"system_error": "cpp"
+		}
+	}
+}

@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PPSSPP Launch",
+            "type": "node",
+            "runtimeExecutable": "/mnt/d/Emulators/PSP/ppsspp_win/PPSSPPWindows.exe",
+            "request": "launch",
+            "program": "${workspaceFolder}/../../bin/psp/EBOOT.PBP",
+            "cwd": "${workspaceFolder}/../../bin/psp",
+            "preLaunchTask": "build"
+        }
+    ]
+}
